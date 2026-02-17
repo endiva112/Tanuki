@@ -1,14 +1,14 @@
 import subprocess
 
 #Esto nos permitirá listar dispositivos conectados
-def run_adb_command(cmd):
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    return result.stdout.strip()
+def ejecutar_comando_adb(comando):
+    resultado = subprocess.run(comando, capture_output=True, text=True)
+    return resultado.stdout.strip()
 
-def list_devices():
-    output = run_adb_command(["adb", "devices"])
-    devices = []
-    for line in output.splitlines()[1:]:
-        if "device" in line:
-            devices.append(line.split()[0])
-    return devices
+def listar_dispositivos():
+    salida = ejecutar_comando_adb(["adb", "devices"])
+    dispositivos = []
+    for linea in salida.splitlines()[1:]:  # saltamos la primera línea
+        if "device" in linea:
+            dispositivos.append(linea.split()[0])
+    return dispositivos

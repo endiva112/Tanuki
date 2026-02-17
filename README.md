@@ -6,3 +6,8 @@ Tanuki/
 ├── adb_utils.py     # funciones ADB
 └── requirements.txt # librerías (si las llegase a necesitar)
 ```
+
+en \Tanuki ejecutar:
+```bash
+python main.py
+```
