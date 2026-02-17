@@ -22,7 +22,25 @@ def main():
 
     print("Has elegido:", dispositivo_elegido)
 
+    ## lanzar una app. TODO -> AGREGAR SISTEMA POR EL CUAL PODER ELEGIR QUE APP LANZAR
+
+    paquete = "com.google.android.deskclock/com.android.deskclock.DeskClock"
+
+    comando = [
+        "adb",
+        "-s",
+        dispositivo_elegido,
+        "shell",
+        "am",
+        "start",
+        "-n",
+        paquete
+    ]
+
+    salida = ejecutar_comando_adb(comando)
+    print(salida)
+
+# Este trocito es esencial y el final del main
 if __name__ == "__main__":
     main()
 
-##
