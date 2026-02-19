@@ -1,10 +1,10 @@
 ```
-Tanuki/
-│
-├── venv/            # entorno virtual
-├── main.py          # programa principal
-├── adb_utils.py     # funciones ADB
-└── requirements.txt # librerías (si las llegase a necesitar)
+- DOABLE    Reconstrucción de flujos internos (interacción/eventos)
+- NO        Uso de memoria y tiempos de carga/renderizado
+- DOABLE    Permisos solicitados
+- MAYBE     Uso de información sensible del usuario
+- NO        Comunicaciones externas (HTTPS, sockets)
+- DOABLE    Capturas (o al menos análisis) de UI en distintas resoluciones/formatos de dispositivo
 ```
 
 en \Tanuki ejecutar:
