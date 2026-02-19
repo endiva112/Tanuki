@@ -33,5 +33,21 @@ def listar_dispositivos():
         print("ERROR: 'adb' no se encuentra instalado o no está en PATH.")
     sys.exit(1)
 
+def seleccionar_dispositivo(listadoDeDispositivos):
+    try:
+        numero = int(input("------------\n"
+        "Seleccione el dispositivo a usar: "))
+
+        dispositivo_raw = listadoDeDispositivos[numero - 1]
+        return dispositivo_raw.split()[0]
+    except IndexError:
+        print("============================================================\n" \
+        "Opción inválida.")
+    except ValueError:
+        print("============================================================\n" \
+        "Solo se permiten números enteros como valor.")
+    sys.exit(1)
+
+
 def ejecutarComando(comando):
     subprocess.run(comando, shell=True)
