@@ -1,5 +1,6 @@
 from colecciones.mensajes import MENSAJES
-import utilidades.utilidades_shell as utils
+import utilidades.utilidades_shell as shellUtils
+import utilidades.utilidades_menores as minorUtils
 
 # Esta variable contendrá el dispositivo android o el AVD (android virtual device) que se usará durante la ejecución del programa
 dispositivo = ''
@@ -7,7 +8,19 @@ dispositivo = ''
 print(MENSAJES[0])
 #print(MENSAJES[1].format(i=404))
 
-listadoDeDispositivos = utils.listar_dispositivos()
-dispositivo = utils.seleccionar_dispositivo(listadoDeDispositivos)
+listadoDeDispositivos = shellUtils.listar_dispositivos()
+dispositivo = shellUtils.seleccionar_dispositivo(listadoDeDispositivos)
 
-print(dispositivo)
+print("Se ha seleccionado -> " + dispositivo)
+
+opcion = minorUtils.mostrarMenuOpciones()
+
+#Posibles excepciones ya controladas en mostrarMenuOpciones()
+if opcion == 1:
+    print()
+elif opcion == 2:
+    print("Opción no implementada aún")
+elif opcion == 3:
+    print("Opción no implementada aún")
+elif opcion == 4:
+    print("Opción no implementada aún")
