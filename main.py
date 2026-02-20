@@ -19,6 +19,7 @@ if opcion == 1:
     shellUtils.instalarDesdeCarpeta(dispositivo)
 elif opcion == 2:
     shellUtils.reinstalar(dispositivo)
+    #shellUtils.comenzarExploracion(dispositivo) funciona :)
     print("Opción no implementada aún")
 elif opcion == 3:
     shellUtils.desinstalar(dispositivo)

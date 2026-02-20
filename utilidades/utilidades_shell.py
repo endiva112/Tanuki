@@ -20,9 +20,7 @@ def listar_dispositivos():
 
         # Si no hay dispositivos
         if len(dispositivos) == 0:
-            print("No se reconoce ningún dispositivo conectado, prueba a abrir un terminal y ejecutar 'adb devices', \n" \
-            "si tampoco ves salida, el problema no se encuentra en este programa, el problema es de adb.\n" \
-            "============================================================")
+            print(MENSAJES[3])
             return []
 
         # Enumeramos y mostramos
@@ -35,6 +33,7 @@ def listar_dispositivos():
         print("ERROR: 'adb' no se encuentra instalado o no está en PATH.")
     sys.exit(1)
 
+
 def seleccionar_dispositivo(listadoDeDispositivos):
     try:
         numero = int(input("------------\n"
@@ -45,7 +44,7 @@ def seleccionar_dispositivo(listadoDeDispositivos):
     except IndexError:
         print(MENSAJES[1])
     except ValueError:
-        print(MENSAJES(2))
+        print(MENSAJES[2])
     sys.exit(1)
 
 
@@ -61,17 +60,13 @@ def ejecutarComando(indice, **kwargs):
 
 # Permite instalar fácilmente la apk que hayas seleccionado y explorarla
 def instalarDesdeCarpeta(dispositivo):
-    apks = mUtils.listar_apks()
+    apks = mUtils.listarApks()
 
     if not apks:
         print("No hay archivos .apk en la carpeta.")
         sys.exit(1)
 
-    print("""
-============================================================
-                    Instalando ARK
-============================================================"""
-    )
+    print(MENSAJES[4])
 
     # Mostrar menú
     for idx, apk in enumerate(apks, start=1):
@@ -82,12 +77,7 @@ def instalarDesdeCarpeta(dispositivo):
     try:
         numero = int(input("------------\nSeleccione una APK: "))
 
-        if 1 <= numero <= len(apks):
-            apk_seleccionada = apks[numero - 1]
-        else:
-            print(MENSAJES(1))
-            sys.exit(1)
-
+        apk_seleccionada = apks[numero - 1]
         stdout, stderr = ejecutarComando(1, dispositivo=dispositivo, apk=apk_seleccionada)
 
         if stderr:
@@ -95,12 +85,15 @@ def instalarDesdeCarpeta(dispositivo):
         else:
             print(stdout)
 
+    except IndexError:
+        print(MENSAJES[1])
     except ValueError:
-        print(MENSAJES(2))
+        print(MENSAJES[2])
         sys.exit(1)
 
 
 def reinstalar(dispositivo):
+    #reinstalar y explorar
     return 0
 
 def desinstalar(dispositivo):
@@ -110,4 +103,7 @@ def explorarAppYaInstalada(dispositivo):
     return 0
 
 
-
+def comenzarExploracion(dispositivo):
+    nombre = "Test"
+    mUtils.crearCarpeta(nombre)
+    return 0
