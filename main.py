@@ -5,8 +5,7 @@ import utilidades.utilidades_menores as minorUtils
 # Esta variable contendrá el dispositivo android o el AVD (android virtual device) que se usará durante la ejecución del programa
 dispositivo = ''
 
-print(MENSAJES[0])
-#print(MENSAJES[1].format(i=404))
+print(MENSAJES[0]) #print(MENSAJES[1].format(i=404))
 
 listadoDeDispositivos = shellUtils.listar_dispositivos()
 dispositivo = shellUtils.seleccionar_dispositivo(listadoDeDispositivos)
@@ -17,10 +16,13 @@ opcion = minorUtils.mostrarMenuOpciones()
 
 #Posibles excepciones ya controladas en mostrarMenuOpciones()
 if opcion == 1:
-    print()
+    shellUtils.instalarDesdeCarpeta(dispositivo)
 elif opcion == 2:
+    shellUtils.reinstalar(dispositivo)
     print("Opción no implementada aún")
 elif opcion == 3:
+    shellUtils.desinstalar(dispositivo)
     print("Opción no implementada aún")
 elif opcion == 4:
+    shellUtils.explorarAppYaInstalada(dispositivo)
     print("Opción no implementada aún")

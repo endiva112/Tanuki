@@ -1,5 +1,6 @@
 # Wrapper que permite a python lanzar comandos por terminal
 import subprocess, sys
+import utilidades.utilidades_menores as mUtils
 from colecciones.comandos import COMANDOS
 
 def listar_dispositivos():
@@ -48,6 +49,61 @@ def seleccionar_dispositivo(listadoDeDispositivos):
         "Solo se permiten números enteros como valor.")
     sys.exit(1)
 
+# Ejecuta un comando de COMANDOS[indice] reemplazando placeholders con kwargs
+def ejecutarComando(indice, **kwargs):
+    comando_template = COMANDOS[indice]
+    comando = comando_template.format(**kwargs)
+    print("Ejecutando:", comando)
+    
+    resultado = subprocess.run(comando, shell=True, capture_output=True, text=True)
+    
+    return resultado.stdout, resultado.stderr
 
-def ejecutarComando(comando):
-    subprocess.run(comando, shell=True)
+# Permite instalar fácilmente la apk que hayas seleccionado y explorarla
+def instalarDesdeCarpeta(dispositivo):
+    apks = mUtils.listar_apks()
+
+    if not apks:
+        print("No hay archivos .apk en la carpeta.")
+        sys.exit(1)
+
+    print("Seleccione una APK para instalar:\n")
+
+    # Mostrar menú
+    for idx, apk in enumerate(apks, start=1):
+        print(f"{idx}) {apk.stem}")  
+        # .stem muestra el nombre sin extensión
+
+    # Elegir APK
+    try:
+        numero = int(input("------------\nSeleccione una APK: "))
+
+        if 1 <= numero <= len(apks):
+            apk_seleccionada = apks[numero - 1]
+        else:
+            print("Opción inválida.")
+            sys.exit(1)
+
+        stdout, stderr = ejecutarComando(1, dispositivo=dispositivo, apk=apk_seleccionada)
+
+        if stderr:
+            print("ERROR:", stderr)
+        else:
+            print(stdout)
+
+    except ValueError:
+        print("Debe introducir un número.")
+        sys.exit(1)
+
+
+def reinstalar(dispositivo):
+    return 0
+
+def desinstalar(dispositivo):
+    return 0
+
+def explorarAppYaInstalada(dispositivo):
+    return 0
+
+
+
