@@ -13,8 +13,7 @@ def mostrarMenuOpciones():
 2) Reinstalar y explorar una APK desde la carpeta de apks
 3) Desinstalar una APK del dispositivo
 4) Explorar una aplicación ya instalada en el dispositivo""")
-        opcion = int(input("------------\n"
-            "Seleccione una opción: "))
+        opcion = int(input("------------\nSeleccione una opción: "))
         
         if opcion != 1 and opcion != 2 and opcion != 3 and opcion != 4:
             print("============================================================\n" \

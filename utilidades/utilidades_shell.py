@@ -2,6 +2,7 @@
 import subprocess, sys
 import utilidades.utilidades_menores as mUtils
 from colecciones.comandos import COMANDOS
+from colecciones.mensajes import MENSAJES
 
 def listar_dispositivos():
     try:
@@ -42,22 +43,21 @@ def seleccionar_dispositivo(listadoDeDispositivos):
         dispositivo_raw = listadoDeDispositivos[numero - 1]
         return dispositivo_raw.split()[0]
     except IndexError:
-        print("============================================================\n" \
-        "Opción inválida.")
+        print(MENSAJES[1])
     except ValueError:
-        print("============================================================\n" \
-        "Solo se permiten números enteros como valor.")
+        print(MENSAJES(2))
     sys.exit(1)
+
 
 # Ejecuta un comando de COMANDOS[indice] reemplazando placeholders con kwargs
 def ejecutarComando(indice, **kwargs):
     comando_template = COMANDOS[indice]
     comando = comando_template.format(**kwargs)
     print("Ejecutando:", comando)
-    
+
     resultado = subprocess.run(comando, shell=True, capture_output=True, text=True)
-    
     return resultado.stdout, resultado.stderr
+
 
 # Permite instalar fácilmente la apk que hayas seleccionado y explorarla
 def instalarDesdeCarpeta(dispositivo):
@@ -67,7 +67,11 @@ def instalarDesdeCarpeta(dispositivo):
         print("No hay archivos .apk en la carpeta.")
         sys.exit(1)
 
-    print("Seleccione una APK para instalar:\n")
+    print("""
+============================================================
+                    Instalando ARK
+============================================================"""
+    )
 
     # Mostrar menú
     for idx, apk in enumerate(apks, start=1):
@@ -81,18 +85,18 @@ def instalarDesdeCarpeta(dispositivo):
         if 1 <= numero <= len(apks):
             apk_seleccionada = apks[numero - 1]
         else:
-            print("Opción inválida.")
+            print(MENSAJES(1))
             sys.exit(1)
 
         stdout, stderr = ejecutarComando(1, dispositivo=dispositivo, apk=apk_seleccionada)
 
         if stderr:
-            print("ERROR:", stderr)
+            print("ERROR: ", stderr)
         else:
             print(stdout)
 
     except ValueError:
-        print("Debe introducir un número.")
+        print(MENSAJES(2))
         sys.exit(1)
 
 
