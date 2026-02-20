@@ -51,7 +51,7 @@ def seleccionar_dispositivo(listadoDeDispositivos):
 def ejecutarComando(indice, **kwargs):
     comando_template = COMANDOS[indice]
     comando = comando_template.format(**kwargs)
-    print("Ejecutando:", comando)
+    # print("Ejecutando:", comando) descomentar solo para debuggear
 
     resultado = subprocess.run(comando, shell=True, capture_output=True, text=True)
     return resultado.stdout, resultado.stderr
@@ -89,19 +89,44 @@ def instalarDesdeCarpeta(dispositivo):
 
     except IndexError:
         print(MENSAJES[1])
+        sys.exit(1)
     except ValueError:
         print(MENSAJES[2])
         sys.exit(1)
 
 
-def reinstalar(dispositivo):
-    #reinstalar y explorar
-    return 0
+# Lista las apks pedidas desde terminal del dispositivo, todas, instaladas por usuario o instaladas por el sistema
+def listarApps(comando, dispositivo):
+    stdout, stderr = ejecutarComando(comando, dispositivo=dispositivo)
 
-def desinstalar(dispositivo):
-    return 0
+    if stderr:
+        print("(ERROR)", stderr)
+    else:
+        print(stdout) #TODO modificar para que la salida sea más entendible
+
 
 def explorarAppYaInstalada(dispositivo):
+
+    try:
+        print(MENSAJES[7])
+        opcion = int(input("------------\nSeleccione una opción: "))
+
+        if opcion == 1:
+            listarApps(3, dispositivo)
+        elif opcion == 2:
+            listarApps(4, dispositivo)
+        elif opcion == 3:
+            listarApps(5, dispositivo)
+
+    except IndexError:
+        print(MENSAJES[1])
+        sys.exit(1)
+    except ValueError:
+        print(MENSAJES[2])
+        sys.exit(1)
+
+
+def desinstalar(dispositivo):
     return 0
 
 

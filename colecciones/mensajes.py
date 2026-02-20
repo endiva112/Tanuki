@@ -35,15 +35,23 @@ si tampoco ves salida, el problema no se encuentra en este programa, el problema
 ============================================================
                     ¿Qué desea hacer?
 ============================================================
-1) Instalar y explorar una APK desde la carpeta de apks
-2) Reinstalar y explorar una APK desde la carpeta de apks
-3) Desinstalar una APK del dispositivo
-4) Explorar una aplicación ya instalada en el dispositivo""",
+1) Instalar (o reinstalar) y explorar una APK desde la carpeta de apks
+2) Explorar una aplicación ya instalada en el dispositivo
+3) Desinstalar una APK del dispositivo""",
 
 #6 Dar nombre a la carpeta de resultados
 """============================================================
            De un nombre a la carpeta de resultados
 ============================================================""",
+
+#7 MENU que apps se desean listar
+"""
+============================================================
+                ¿Qué apps desea listar?
+============================================================
+1) Listar todas las apps
+2) Listar solo las apps instaladas por el usuario
+3) Listar solo las apps del sistema""",
 
 """
 ============================================================
