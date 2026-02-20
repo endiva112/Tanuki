@@ -40,6 +40,10 @@ si tampoco ves salida, el problema no se encuentra en este programa, el problema
 3) Desinstalar una APK del dispositivo
 4) Explorar una aplicación ya instalada en el dispositivo""",
 
+#6 Dar nombre a la carpeta de resultados
+"""============================================================
+           De un nombre a la carpeta de resultados
+============================================================""",
 
 """
 ============================================================

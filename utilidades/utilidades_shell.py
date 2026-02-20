@@ -36,8 +36,7 @@ def listar_dispositivos():
 
 def seleccionar_dispositivo(listadoDeDispositivos):
     try:
-        numero = int(input("------------\n"
-        "Seleccione el dispositivo a usar: "))
+        numero = int(input("------------\nSeleccione el dispositivo a usar: "))
 
         dispositivo_raw = listadoDeDispositivos[numero - 1]
         return dispositivo_raw.split()[0]
@@ -81,9 +80,12 @@ def instalarDesdeCarpeta(dispositivo):
         stdout, stderr = ejecutarComando(1, dispositivo=dispositivo, apk=apk_seleccionada)
 
         if stderr:
-            print("ERROR: ", stderr)
+            print("(ERROR) ", stderr)
         else:
-            print(stdout)
+            print("(OK) ", stdout)
+
+        # Si la instalación fue exitosa comenzamos la exploración
+        comenzarExploracion(dispositivo)
 
     except IndexError:
         print(MENSAJES[1])
@@ -104,6 +106,7 @@ def explorarAppYaInstalada(dispositivo):
 
 
 def comenzarExploracion(dispositivo):
-    nombre = "Test"
+    print(MENSAJES[6])
+    nombre = str(input("Nombre (ej. TestReloj): "))
     mUtils.crearCarpeta(nombre)
-    return 0
+
