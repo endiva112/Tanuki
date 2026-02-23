@@ -1,6 +1,7 @@
 # Wrapper que permite a python lanzar comandos por terminal
 import subprocess, sys
 import utilidades.utilidades_menores as mUtils
+import utilidades.crawler as crawler
 from colecciones.comandos import COMANDOS
 from colecciones.mensajes import MENSAJES
 
@@ -51,7 +52,7 @@ def seleccionar_dispositivo(listadoDeDispositivos):
 def ejecutarComando(indice, **kwargs):
     comando_template = COMANDOS[indice]
     comando = comando_template.format(**kwargs)
-    # print("Ejecutando:", comando) descomentar solo para debuggear
+    print("Ejecutando:", comando) # descomentar solo para debuggear
 
     resultado = subprocess.run(comando, shell=True, capture_output=True, text=True)
     return resultado.stdout, resultado.stderr
@@ -84,9 +85,6 @@ def instalarDesdeCarpeta(dispositivo):
         else:
             print("(OK) ", stdout)
 
-        # Si la instalación fue exitosa comenzamos la exploración
-        comenzarExploracion(dispositivo)
-
     except IndexError:
         print(MENSAJES[1])
         sys.exit(1)
@@ -114,6 +112,7 @@ def listarApps(comando, dispositivo):
     return apps
 
 
+# Lista las apps en el dispositivo y retorna como valor el nombre y la actividad principal de dicha aplicación
 def explorarAppYaInstalada(dispositivo):
 
     try:
@@ -127,6 +126,9 @@ def explorarAppYaInstalada(dispositivo):
             apps = listarApps(4, dispositivo)
         elif opcion == 3:
             apps = listarApps(5, dispositivo)
+        else:
+            print(MENSAJES[1]) # Opción fuera de parámetros
+            sys.exit(1)
 
         print(MENSAJES[8])
         i = 1
@@ -134,7 +136,10 @@ def explorarAppYaInstalada(dispositivo):
             print(f"{i}) {app}")
             i+=1
         
-        appSeleccionada = int(input("------------\nSeleccione una aplicación para explorar: "))
+        indiceAppSeleccionada = int(input("------------\nSeleccione una aplicación para explorar: "))
+        appSeleccionada = apps[indiceAppSeleccionada - 1]
+        app_y_activity = obtenerInfoPaquete(dispositivo, appSeleccionada)
+        return app_y_activity
 
     except IndexError:
         print(MENSAJES[1])
@@ -144,13 +149,29 @@ def explorarAppYaInstalada(dispositivo):
         sys.exit(1)
 
 
-def desinstalar(dispositivo):
+def desinstalar(dispositivo):#TODO
     return 0
 
 
-def comenzarExploracion(dispositivo):
+# Cierra cualquier app que haya abierta en este momento
+def restablecerFoco(dispositivo):
+    ejecutarComando(8, dispositivo=dispositivo)
+
+
+# Obtiene la información necesaria para lanzar la apk seleccionada (nombre + activity)
+def obtenerInfoPaquete(dispositivo, appSeleccionada):
+    stdout, stderr = ejecutarComando(7, dispositivo=dispositivo, nombre_app=appSeleccionada)
+
+    if stderr:
+        print("Error:", stderr)
+        sys.exit[1]
+    else:
+        return stdout
+
+
+# Crea la carpeta donde el crawler volcará los resultados de su exploración y lanza al crawler
+def comenzarExploracion(dispositivo, appSeleccionada):
     print(MENSAJES[6])
     nombre = str(input("Nombre (ej. TestReloj): "))
-    mUtils.crearCarpeta(nombre)
-
-#adb shell uiautomator dump
+    carpetaResultados = mUtils.crearCarpeta(nombre)
+    crawler.iniciarInvestigacion(dispositivo, appSeleccionada, carpetaResultados)

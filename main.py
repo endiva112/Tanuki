@@ -16,10 +16,14 @@ opcion = minorUtils.mostrarMenuOpciones()
 
 #Posibles excepciones ya controladas en mostrarMenuOpciones()
 if opcion == 1:
-    shellUtils.instalarDesdeCarpeta(dispositivo)
+    appSeleccionada = shellUtils.instalarDesdeCarpeta(dispositivo)
+    # Si la instalación fue exitosa comenzamos la exploración
+    shellUtils.comenzarExploracion(dispositivo, appSeleccionada)
+    
 elif opcion == 2:
-    shellUtils.explorarAppYaInstalada(dispositivo)
-    print("Opción no implementada completamente")
+    appSeleccionada = shellUtils.explorarAppYaInstalada(dispositivo)
+    shellUtils.comenzarExploracion(dispositivo, appSeleccionada)
+
 elif opcion == 3:
     shellUtils.desinstalar(dispositivo)
     print("Opción no implementada aún")

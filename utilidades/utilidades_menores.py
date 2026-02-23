@@ -10,7 +10,7 @@ def mostrarMenuOpciones():
         print(MENSAJES[5])
         opcion = int(input("------------\nSeleccione una opción: "))
         
-        if opcion != 1 and opcion != 2 and opcion != 3 and opcion != 4:
+        if opcion != 1 and opcion != 2 and opcion != 3:
             print(MENSAJES[1])
         else:
             return opcion
@@ -29,9 +29,10 @@ def listarApks():
     return apks
 
 
-# Crea la carpeta de output donde se establecerán todos los documentos generados en la exploración
+# Crea la carpeta de output donde se establecerán todos los documentos generados en la exploración y retorna la ruta de dicha carpeta
 def crearCarpeta(nombre):
 
     fecha = datetime.now().strftime("%Y%m%d_%H%M%S") # Fecha y hora formateada: 20260220_154210
     carpeta = Path(f"resultados/{nombre}_{fecha}") # Ruta de la carpeta
     carpeta.mkdir(parents=False, exist_ok=False)
+    return carpeta
