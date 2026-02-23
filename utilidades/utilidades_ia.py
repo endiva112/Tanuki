@@ -43,7 +43,11 @@ def atacarAPI(mensaje):
     return respuesta
 
 def explorarPermisos(dispositivo, appSeleccionada):
-    #permisosSinProcesar = sUtils.extraerPermisos(dispositivo, appSeleccionada)
-    #print(permisosSinProcesar)
-    resultado = atacarAPI("Cuentame un chiste corto")
-    return resultado
+    permisosSinProcesar = sUtils.extraerPermisos(dispositivo, appSeleccionada)
+    
+    # Abrir y leer un archivo completo
+    with open("prompts/PERMISOS.txt", "r", encoding="utf-8") as f:
+        prompt = f.read()
+    peticion = prompt + permisosSinProcesar
+    respuestaIA = atacarAPI(peticion)
+    return respuestaIA

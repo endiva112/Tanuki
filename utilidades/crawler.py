@@ -18,7 +18,8 @@ def iniciarInvestigacion(dispositivo, appSeleccionada, carpetaResultados):
     # Extraer permisos
     resultado = iaUtils.explorarPermisos(dispositivo, appSeleccionada)
     
-    archivo = carpetaResultados / "itWorks.txt"
-    with open(archivo, "w", encoding="utf-8") as f:
+    informePermisos = carpetaResultados / "Informe_de_permisos.txt"
+    with open(informePermisos, "w", encoding="utf-8") as f:
         f.write(resultado)
     
+    # 
