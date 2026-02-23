@@ -59,6 +59,18 @@ si tampoco ves salida, el problema no se encuentra en este programa, el problema
                 Listando apps disponibles
 ============================================================""",
 
+#9 INFO comenzando la exploración
+"""
+============================================================
+              Comenzando la exploración
+============================================================""",
+
+#10 INFO comenzando la exploración
+"""
+============================================================
+                Extrayendo permisos...
+============================================================""",
+
 """
 ============================================================
 Error {i}

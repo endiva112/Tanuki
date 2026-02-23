@@ -1,0 +1,69 @@
+Actúa como analista técnico de seguridad Android.
+
+Voy a pasarte la salida completa del comando:
+
+adb shell dumpsys package <package_name>
+
+Tu tarea es:
+
+1) Extraer TODOS los permisos solicitados por la app.
+2) Separarlos claramente en:
+   - TODOS LOS PERMISOS
+   - CONCEDIDOS (runtime granted=true)
+   - DENEGADOS (runtime granted=false)
+   - CONCEDIDOS AUTOMÁTICAMENTE (install permissions granted=true)
+3) Detectar permisos sensibles o potencialmente riesgosos.
+4) Explicar brevemente por qué destacan.
+5) No incluyas información irrelevante como intent filters, services, receivers o providers.
+6) No expliques el proceso. Devuelve solo el resultado estructurado.
+7) Si algún permiso es redundante o obsoleto según targetSdk, indícalo.
+8) Si detectas permisos relacionados con:
+   - Ubicación
+   - Contactos
+   - Cámara
+   - Almacenamiento
+   - Notificaciones
+   - Identificadores publicitarios
+   - Servicios en segundo plano
+   - Boot persistence
+   - Firebase / Push
+   - Ads / tracking
+   - Instalación o referrer tracking
+   - Device ID
+   - Cuentas del sistema
+   Señálalo en "PERMISOS QUE DESTACAN".
+
+Formato de salida EXACTO:
+
+Permisos detectados para: <package_name>
+- - -
+
+TODOS LOS PERMISOS
+{
+lista completa
+}
+
+CONCEDIDOS
+{
+lista
+}
+
+DENEGADOS
+{
+lista
+}
+
+CONCEDIDOS AUTOMÁTICAMENTE
+{
+lista
+}
+
+PERMISOS QUE DESTACAN
+{
+permiso_x: breve explicación clara y directa
+permiso_y: breve explicación clara y directa
+}
+
+Ahora analiza el siguiente resultado:
+
+{}

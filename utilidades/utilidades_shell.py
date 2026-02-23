@@ -178,3 +178,16 @@ def comenzarExploracion(dispositivo, appSeleccionada):
     nombre = str(input("Nombre (ej. TestReloj): "))
     carpetaResultados = mUtils.crearCarpeta(nombre)
     crawler.iniciarInvestigacion(dispositivo, appSeleccionada, carpetaResultados)
+
+
+# Devuelve los permisos usados por la app sin procesar
+def extraerPermisos(dispositivo, appSeleccionada):
+    partes = appSeleccionada.split("/")
+    appSinActivity = partes[0]
+    stdout, stderr = ejecutarComando(10, dispositivo=dispositivo, nombre_app=appSinActivity)
+
+    if stderr:
+        print("Error:", stderr)
+        sys.exit[1]
+    else:
+        return stdout

@@ -11,5 +11,6 @@ COMANDOS = [
     'adb -s {dispositivo} shell cmd package resolve-activity --brief --components {nombre_app}',        #7 Devuelve nombre y activity de una apk, necesario para poder lanzarla
     'adb -s {dispositivo} shell input keyevent 3',                                                      #8 Vuelve al home del teléfono sin importar que app esté abierta
     'adb -s {dispositivo} shell am start -n {apk_y_activity}',                                          #9 Lanza la app seleccionada con la activity seleccionada
-    ''
+    'adb -s {dispositivo} shell dumpsys package {nombre_app}',                                          #10 Extrae todos los permisos de la app
+
 ]
