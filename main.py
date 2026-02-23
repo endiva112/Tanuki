@@ -18,8 +18,9 @@ opcion = minorUtils.mostrarMenuOpciones()
 if opcion == 1:
     appSeleccionada = shellUtils.instalarDesdeCarpeta(dispositivo)
     # Si la instalación fue exitosa comenzamos la exploración
-    shellUtils.comenzarExploracion(dispositivo, appSeleccionada)
-    
+    # shellUtils.comenzarExploracion(dispositivo, appSeleccionada)
+    # TODO mejorar instalarDesdeCarpeta() para que devuelva el nombre del paquete y poder explorar del tirón
+
 elif opcion == 2:
     appSeleccionada = shellUtils.explorarAppYaInstalada(dispositivo)
     shellUtils.comenzarExploracion(dispositivo, appSeleccionada)

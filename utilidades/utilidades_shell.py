@@ -5,11 +5,11 @@ import utilidades.crawler as crawler
 from colecciones.comandos import COMANDOS
 from colecciones.mensajes import MENSAJES
 
+# Lista todos los dispositivos
 def listar_dispositivos():
     try:
         #Ejecuta el comando en CMD
         resultado = subprocess.run(COMANDOS[0], shell=True, capture_output=True, text=True, check=True)
-
         lineas = resultado.stdout.strip().splitlines()
         dispositivos_raw = lineas[1:]
 
@@ -35,6 +35,7 @@ def listar_dispositivos():
     sys.exit(1)
 
 
+# Devuelve el nombre del sispositivo seleccionado por terminal
 def seleccionar_dispositivo(listadoDeDispositivos):
     try:
         numero = int(input("------------\nSeleccione el dispositivo a usar: "))
@@ -58,7 +59,7 @@ def ejecutarComando(indice, **kwargs):
     return resultado.stdout, resultado.stderr
 
 
-# Permite instalar fácilmente la apk que hayas seleccionado y explorarla
+# Permite instalar fácilmente la apk que hayas seleccionado
 def instalarDesdeCarpeta(dispositivo):
     apks = mUtils.listarApks()
 
@@ -84,6 +85,8 @@ def instalarDesdeCarpeta(dispositivo):
             print("(ERROR) ", stderr)
         else:
             print("(OK) ", stdout)
+            # Devuelve el nombre y la activity de la apk que se acaba de instalar
+            # return 0 #TODO posibles mejoras, que nada más instalar la recorra
 
     except IndexError:
         print(MENSAJES[1])
