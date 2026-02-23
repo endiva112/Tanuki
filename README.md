@@ -11,3 +11,6 @@ en \Tanuki ejecutar:
 ```bash
 python main.py
 ```
+
+Librerias que han hecho falta y deberían agregarse al requirements.txt
+pip install python-dotenv

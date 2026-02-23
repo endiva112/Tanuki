@@ -16,9 +16,9 @@ def iniciarInvestigacion(dispositivo, appSeleccionada, carpetaResultados):
     sUtils.ejecutarComando(9, dispositivo=dispositivo, apk_y_activity=appSeleccionada)
 
     # Extraer permisos
-    iaUtils.explorarPermisos(dispositivo, appSeleccionada)
+    resultado = iaUtils.explorarPermisos(dispositivo, appSeleccionada)
     
     archivo = carpetaResultados / "itWorks.txt"
-    with open(archivo, "w") as f:
-        f.write("Hola mundo")
+    with open(archivo, "w", encoding="utf-8") as f:
+        f.write(resultado)
     
