@@ -19,7 +19,7 @@ if opcion == 1:
     shellUtils.instalarDesdeCarpeta(dispositivo)
 elif opcion == 2:
     shellUtils.explorarAppYaInstalada(dispositivo)
-    print("Opción no implementada aún")
+    print("Opción no implementada completamente")
 elif opcion == 3:
     shellUtils.desinstalar(dispositivo)
     print("Opción no implementada aún")

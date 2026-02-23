@@ -98,11 +98,20 @@ def instalarDesdeCarpeta(dispositivo):
 # Lista las apks pedidas desde terminal del dispositivo, todas, instaladas por usuario o instaladas por el sistema
 def listarApps(comando, dispositivo):
     stdout, stderr = ejecutarComando(comando, dispositivo=dispositivo)
+    apps = []
 
     if stderr:
         print("(ERROR)", stderr)
+        
     else:
-        print(stdout) #TODO modificar para que la salida sea más entendible
+        # Dividir la salida por líneas y quitar prefijo 'package:'
+        lineas = stdout.strip().splitlines()
+        
+        for linea_raw in lineas:
+            linea = linea_raw.replace("package:", "").strip()
+            apps.append(linea)
+
+    return apps
 
 
 def explorarAppYaInstalada(dispositivo):
@@ -110,13 +119,22 @@ def explorarAppYaInstalada(dispositivo):
     try:
         print(MENSAJES[7])
         opcion = int(input("------------\nSeleccione una opción: "))
+        apps = []
 
         if opcion == 1:
-            listarApps(3, dispositivo)
+            apps = listarApps(3, dispositivo)
         elif opcion == 2:
-            listarApps(4, dispositivo)
+            apps = listarApps(4, dispositivo)
         elif opcion == 3:
-            listarApps(5, dispositivo)
+            apps = listarApps(5, dispositivo)
+
+        print(MENSAJES[8])
+        i = 1
+        for app in apps:
+            print(f"{i}) {app}")
+            i+=1
+        
+        appSeleccionada = int(input("------------\nSeleccione una aplicación para explorar: "))
 
     except IndexError:
         print(MENSAJES[1])
@@ -135,3 +153,4 @@ def comenzarExploracion(dispositivo):
     nombre = str(input("Nombre (ej. TestReloj): "))
     mUtils.crearCarpeta(nombre)
 
+#adb shell uiautomator dump

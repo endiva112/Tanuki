@@ -53,6 +53,12 @@ si tampoco ves salida, el problema no se encuentra en este programa, el problema
 2) Listar solo las apps instaladas por el usuario
 3) Listar solo las apps del sistema""",
 
+#8 INFO instalando / reinstalando apk
+"""
+============================================================
+                Listando apps disponibles
+============================================================""",
+
 """
 ============================================================
 Error {i}
