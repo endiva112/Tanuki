@@ -24,4 +24,37 @@ def iniciarInvestigacion(dispositivo, appSeleccionada, carpetaResultados):
     #     f.write(resultado)
     # print("INFORME DE PERMISOS GENERADO descomentar este bloque luego")
     
-    # 
+
+    # Crear id para la vista
+    idVista = 0
+
+    # Tomar captura de pantalla
+    time.sleep(0.2)
+    sUtils.ejecutarComando(11, dispositivo=dispositivo)
+    #Descargar captura de pantalla
+    sUtils.ejecutarComando(12, dispositivo=dispositivo, ubicacion=carpetaResultados/"capturas", idImagen=idVista)
+
+    for idVista in range (2):
+        # Generar xml
+        sUtils.ejecutarComando(13, dispositivo=dispositivo)
+
+        # Descargar xml
+        sUtils.ejecutarComando(14, dispositivo=dispositivo, ubicacion=carpetaResultados)
+
+        # Leer el xml
+        with open(f"{carpetaResultados}/window_dump.xml", "r", encoding="utf-8") as f:
+            miXMLActual = f.read()
+
+        with open("prompts/CASOS_DE_USO.txt", "r", encoding="utf-8") as f:
+            prompt = f.read()
+
+        peticion = prompt + miXMLActual
+        rutaImagen = f"{carpetaResultados}/capturas/{idVista}.png"
+        #print(rutaImagen)
+        respuesta = iaUtils.atacarAPI_con_imagen(peticion, rutaImagen)
+
+        informeCasosUso = carpetaResultados / "Informe_de_casos_de_uso.txt"
+        with open(informeCasosUso, "a", encoding="utf-8") as f:
+            f.write(respuesta)
+        
+        sys.exit(1)

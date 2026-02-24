@@ -65,5 +65,3 @@ permiso_y: breve explicación clara y directa
 }
 
 Ahora analiza el siguiente resultado:
-
-{}

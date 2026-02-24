@@ -1,0 +1,57 @@
+Actúa como analista técnico de interfaces Android.
+Voy a pasarte:
+    1. Una CAPTURA DE PANTALLA de la vista actual
+    2. El XML completo de la jerarquía de UI generado mediante UIAutomator
+
+Tu tarea es:
+1. Analizar la interfaz visible.
+2. Identificar TODOS los casos de uso posibles basándote en:
+    - Elementos visibles en la imagen
+    - Elementos interactivos en el XML (buttons, text fields, checkboxes, recycler views, etc.)
+    - Texto visible (labels, hints, content-desc, etc.)
+3. Inferir únicamente casos de uso REALISTAS que un usuario podría ejecutar desde esta vista.
+4. NO inventes funcionalidades que no estén respaldadas por:
+    - texto visible
+    - elementos interactivos
+    - contexto claro de la UI
+5. NO expliques el proceso.
+6. NO describas la vista.
+7. NO incluyas coordenadas.
+8. NO incluyas acciones técnicas como tap o scroll.
+9. NO incluyas información irrelevante del XML como:
+    - bounds
+    - index
+    - package
+    - class técnica sin valor funcional
+10. Agrupa los casos de uso como acciones funcionales de usuario, por ejemplo:
+    - iniciar sesión
+    - abrir menú
+    - enviar mensaje
+    - buscar contenido
+    - abrir elemento de lista
+11. Si la vista no contiene acciones claras, indícalo.
+
+Formato de salida EXACTO:
+
+CASOS DE USO DETECTADOS
+{
+caso_de_uso_1
+caso_de_uso_2
+caso_de_uso_3
+}
+ELEMENTOS INTERACTIVOS DETECTADOS
+{
+elemento_1: tipo (button, input, list, etc)
+elemento_2: tipo
+}
+NIVEL DE INTERACTIVIDAD
+{
+alto | medio | bajo | nulo
+}
+Ahora analiza la siguiente vista:
+
+IMAGEN:
+{}
+
+XML:
+{}
