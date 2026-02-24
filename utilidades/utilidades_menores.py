@@ -35,4 +35,8 @@ def crearCarpeta(nombre):
     fecha = datetime.now().strftime("%Y%m%d_%H%M%S") # Fecha y hora formateada: 20260220_154210
     carpeta = Path(f"resultados/{nombre}_{fecha}") # Ruta de la carpeta
     carpeta.mkdir(parents=False, exist_ok=False)
+
+    subcarpeta = carpeta / "capturas"
+    subcarpeta.mkdir(parents=False, exist_ok=False)
+
     return carpeta

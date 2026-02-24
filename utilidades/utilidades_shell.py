@@ -191,3 +191,14 @@ def extraerPermisos(dispositivo, appSeleccionada):
         sys.exit[1]
     else:
         return stdout
+
+
+# Genera un HASH de la vista el cual usa el crawler para poder identificar y distinguir una vista de otra
+def generarHash():
+    return 0
+
+# Realiza una captura de pantalla y la almacena en la carpeta de capturas
+def hacerCapturaPantalla():
+    return 0
+
+

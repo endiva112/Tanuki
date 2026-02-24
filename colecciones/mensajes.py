@@ -4,7 +4,7 @@ MENSAJES = [
 #0 Info programa
 """
 ============================================================
-Lanzando Tanuki. versión a0.02
+Lanzando Tanuki. versión a0.11
 ============================================================""",
 
 #1 INFO Fuera de indice

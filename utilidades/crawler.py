@@ -16,10 +16,12 @@ def iniciarInvestigacion(dispositivo, appSeleccionada, carpetaResultados):
     sUtils.ejecutarComando(9, dispositivo=dispositivo, apk_y_activity=appSeleccionada)
 
     # Extraer permisos
-    resultado = iaUtils.explorarPermisos(dispositivo, appSeleccionada)
+    print("CONSULTANDO PERMISOS DE LA APLICACIÓN temporalmente deshabilitado mientras se testean otras funcionalidades")
+    # resultado = iaUtils.explorarPermisos(dispositivo, appSeleccionada)
     
-    informePermisos = carpetaResultados / "Informe_de_permisos.txt"
-    with open(informePermisos, "w", encoding="utf-8") as f:
-        f.write(resultado)
+    # informePermisos = carpetaResultados / "Informe_de_permisos.txt"
+    # with open(informePermisos, "w", encoding="utf-8") as f:
+    #     f.write(resultado)
+    # print("INFORME DE PERMISOS GENERADO descomentar este bloque luego")
     
     # 

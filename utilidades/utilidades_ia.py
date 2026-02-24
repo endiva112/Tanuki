@@ -6,6 +6,7 @@ from colecciones.comandos import COMANDOS
 from colecciones.mensajes import MENSAJES
 
 
+# Función que toma un mensaje y lo envia al agente IA, retorna la respuesta del agente como cadena de texto
 def atacarAPI(mensaje):
     # Cargar varaibles del .env
     load_dotenv()
@@ -42,6 +43,7 @@ def atacarAPI(mensaje):
     respuesta = resultado["choices"][0]["message"]["content"]
     return respuesta
 
+# Explora los permisos de la app y devuelve la lista de permisos ya tratada como cadena de texto
 def explorarPermisos(dispositivo, appSeleccionada):
     permisosSinProcesar = sUtils.extraerPermisos(dispositivo, appSeleccionada)
     
