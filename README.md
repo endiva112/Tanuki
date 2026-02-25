@@ -1,6 +1,6 @@
 ```
 - DOABLE    Reconstrucción de flujos internos (interacción/eventos)
-- NO        Uso de memoria y tiempos de carga/renderizado
+- MAYBE     Uso de memoria y tiempos de carga/renderizado
 - DOABLE    Permisos solicitados
 - MAYBE     Uso de información sensible del usuario
 - NO        Comunicaciones externas (HTTPS, sockets)
@@ -14,3 +14,6 @@ python main.py
 
 Librerias que han hecho falta y deberían agregarse al requirements.txt
 pip install python-dotenv
+
+Elementos externos necesarios:
+adb para Windows, Linux o Mac
