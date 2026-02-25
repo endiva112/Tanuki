@@ -11,6 +11,17 @@ def iniciarInvestigacion(dispositivo, appSeleccionada, carpetaResultados):
     sUtils.restablecerFoco(dispositivo)
     #time.sleep(0.4)
 
+    # Crear id para la vista
+    idVista = 0
+
+    # Tomar captura de pantalla fuera de la app
+    time.sleep(0.2)
+    sUtils.ejecutarComando(11, dispositivo=dispositivo)
+    #Descargar captura de pantalla
+    sUtils.ejecutarComando(12, dispositivo=dispositivo, ubicacion=carpetaResultados/"capturas", idImagen=idVista)
+
+    idVista += 1
+
     # Lanza la app seleccionada
     print(MENSAJES[9])
     sUtils.ejecutarComando(9, dispositivo=dispositivo, apk_y_activity=appSeleccionada)
@@ -23,10 +34,6 @@ def iniciarInvestigacion(dispositivo, appSeleccionada, carpetaResultados):
     # with open(informePermisos, "w", encoding="utf-8") as f:
     #     f.write(resultado)
     # print("INFORME DE PERMISOS GENERADO descomentar este bloque luego")
-    
-
-    # Crear id para la vista
-    idVista = 0
 
     # Tomar captura de pantalla
     time.sleep(0.2)
@@ -57,4 +64,3 @@ def iniciarInvestigacion(dispositivo, appSeleccionada, carpetaResultados):
         with open(informeCasosUso, "a", encoding="utf-8") as f:
             f.write(respuesta)
         
-        sys.exit(1)
