@@ -1,30 +1,42 @@
+# main.py arranca el programa. Muestra el menú, lista los dispositivos, el usuario elige uno. Con ese dispositivo crea una instancia de ADB.
+# Luego pregunta si quiere instalar una APK nueva o explorar una ya instalada. Una vez que tiene el dispositivo y la app lista, crea 
+# una instancia de Crawler y le dice crawler.iniciar().
 from colecciones.mensajes import MENSAJES
-import utilidades.utilidades_shell as shellUtils
-import utilidades.utilidades_menores as minorUtils
+from dotenv import load_dotenv
+import utilidades.agente_ia as AGENTE_IA
+import utilidades.utilidades as utils
+import utilidades.adb as ADB
+import crawler as CRAWLER
+import os
 
-# Esta variable contendrá el dispositivo android o el AVD (android virtual device) que se usará durante la ejecución del programa
-dispositivo = ''
 
-print(MENSAJES[0]) #print(MENSAJES[1].format(i=404))
+utils.bienvenida()
+dispositivos = utils.obtenerDispositivos()
+utils.listarDispositivos(dispositivos)
+dispositivo = utils.seleccionarDispositivo(dispositivos)
 
-listadoDeDispositivos = shellUtils.listar_dispositivos()
-dispositivo = shellUtils.seleccionar_dispositivo(listadoDeDispositivos)
+# Creada instancia de adb para dispositivo seleccionado
+adb = ADB.ADB(dispositivo)
 
-print("Se ha seleccionado -> " + dispositivo)
-
-opcion = minorUtils.mostrarMenuOpciones()
-
+opcion = utils.mostrarMenuOpciones()
 #Posibles excepciones ya controladas en mostrarMenuOpciones()
-if opcion == 1:
-    appSeleccionada = shellUtils.instalarDesdeCarpeta(dispositivo)
-    # Si la instalación fue exitosa comenzamos la exploración
-    # shellUtils.comenzarExploracion(dispositivo, appSeleccionada)
-    # TODO mejorar instalarDesdeCarpeta() para que devuelva el nombre del paquete y poder explorar del tirón
+if opcion == 1:                                             # INSTALACIóN
+    utils.instalarDesdeCarpeta(adb)
 
-elif opcion == 2:
-    appSeleccionada = shellUtils.explorarAppYaInstalada(dispositivo)
-    shellUtils.comenzarExploracion(dispositivo, appSeleccionada)
+elif opcion == 2:                                           # EXPLORACIóN
+    appSeleccionada = utils.explorarAppYaInstalada(adb)
+    print(MENSAJES["inputNombreCarpeta"])
+    nombre = str(input("Nombre (ej. TestReloj): "))
+    carpetaResultados = utils.crearCarpetaSalida(nombre)
 
-elif opcion == 3:
-    shellUtils.desinstalar(dispositivo)
+    load_dotenv()
+    agenteBarato = AGENTE_IA.AgenteIA(os.getenv("AI_API_URL"), os.getenv("AI_API_KEY"), os.getenv("AI_WORSE_MODEL"))
+    agenteComptente = AGENTE_IA.AgenteIA(os.getenv("AI_API_URL"), os.getenv("AI_API_KEY"), os.getenv("AI_MODEL"))
+
+    crawler = CRAWLER.Crawler(adb, appSeleccionada, carpetaResultados, agenteBarato, agenteComptente)
+    crawler.iniciar()
+
+
+elif opcion == 3:                                           # DESINSTALACIóN
+    #utils.desinstalar(adb)
     print("Opción no implementada aún")

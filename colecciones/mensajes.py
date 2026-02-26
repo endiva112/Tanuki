@@ -1,51 +1,42 @@
-# Diccionario de mensajes como placeholders
-
-MENSAJES = [
-#0 Info programa
-"""
+MENSAJES = {
+    "bienvenida": """
 ============================================================
-Lanzando Tanuki. versión a0.11
+Lanzando Tanuki. versión a0.20
 ============================================================""",
 
-#1 INFO Fuera de indice
-"""
+    "errorOpcionInvalida": """
 ============================================================
 Opción inválida.""",
 
-#2 INFO Carácter extraño
-"""
+    "errorNoEsNumero": """
 ============================================================
 Solo se permiten números enteros como valor.""",
 
-#3 INFO adb devices nulo
-"""
+    "errorSinDispositivos": """
 ============================================================
 No se reconoce ningún dispositivo conectado, prueba a abrir un terminal y ejecutar 'adb devices',
 si tampoco ves salida, el problema no se encuentra en este programa, el problema es de adb.
 ============================================================""",
 
-#4 INFO instalando / reinstalando apk
-"""
+    "infoInstalandoAPK": """
 ============================================================
-                    Instalando ARK
+                    Instalando APK
 ============================================================""",
 
-#5 MENU menu de opciones del software
-"""
+    "menuPrincipal": """
 ============================================================
                     ¿Qué desea hacer?
 ============================================================
-1) Instalar (o reinstalar) y explorar una APK desde la carpeta de apks
+1) Instalar (o reinstalar) una APK
 2) Explorar una aplicación ya instalada en el dispositivo
 3) Desinstalar una APK del dispositivo""",
 
-#6 Dar nombre a la carpeta de resultados
-"""============================================================
+    "inputNombreCarpeta": """
+============================================================
            De un nombre a la carpeta de resultados
 ============================================================""",
 
-#7 MENU que apps se desean listar
-"""
+    "menuListarApps": """
 ============================================================
                 ¿Qué apps desea listar?
 ============================================================
@@ -53,31 +44,33 @@ si tampoco ves salida, el problema no se encuentra en este programa, el problema
 2) Listar solo las apps instaladas por el usuario
 3) Listar solo las apps del sistema""",
 
-#8 INFO instalando / reinstalando apk
-"""
+    "infoListandoApps": """
 ============================================================
                 Listando apps disponibles
 ============================================================""",
 
-#9 INFO comenzando la exploración
-"""
+    "infoComenzandoExploracion": """
 ============================================================
               Comenzando la exploración
 ============================================================""",
 
-#10 INFO comenzando la exploración
-"""
+    "infoExtrayendoPermisos": """
 ============================================================
                 Extrayendo permisos...
 ============================================================""",
 
-"""
+    "exitoExtracciónPermisos": """
+============================================================
+            Extracción de permisos completada
+============================================================""",
+
+    "errorGenerico": """
 ============================================================
 Error {i}
 ============================================================""",
 
-"""
+    "advertenciaGenerica": """
 ============================================================
 Advertencia {i}
 ============================================================""",
-]
+}
